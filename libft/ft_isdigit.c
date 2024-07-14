@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osarikay <osarikay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agungor <agungor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 15:51:56 by osarikay          #+#    #+#             */
-/*   Updated: 2023/10/30 18:03:44 by osarikay         ###   ########.fr       */
+/*   Created: 2023/10/11 14:10:09 by agungor           #+#    #+#             */
+/*   Updated: 2023/10/12 17:09:18 by agungor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
-	{
-		return (1);
-	}
-	return (0);
+	return (c >= 48 && c <= 57);
 }

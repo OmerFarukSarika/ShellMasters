@@ -5,8 +5,12 @@ LIBS = -lreadline
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
-SRCS		= main.c error.c finish.c env.c allocation.c check.c \
-				LEXER/lexer.c
+SRCS		= main.c error.c finish.c env.c allocation.c check.c  list_creating.c \
+				LEXER/lexer.c \
+				LEXER/edit_list.c \
+				EXPANDER/expander.c\
+
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -38,4 +42,11 @@ re: fclean all
 
 f: fclean
 
-.PHONY: all clean fclean re leaks f
+c : clean
+
+l : leaks
+
+r:  f all c
+	@valgrind --leak-check=full --show-leak-kinds=all --log-file=leaks.txt ./$(NAME)
+
+PHONY: all clean fclean re leaks f c r l

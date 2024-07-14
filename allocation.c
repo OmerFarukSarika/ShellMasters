@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   allocation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osarikay < osarikay@student.42.fr>         +#+  +:+       +#+        */
+/*   By: agungor <agungor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 18:47:07 by osarikay          #+#    #+#             */
-/*   Updated: 2024/06/01 19:38:53 by osarikay         ###   ########.fr       */
+/*   Updated: 2024/07/06 14:43:43 by agungor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	*s_malloc(void *name, long count, size_t size)
+void	*s_malloc(t_minishell *mini, long count, size_t size)
 {
 	void	*result;
-    
-    (void)name;
-	result = NULL;
+
+	//!result = NULL;
 	result = ft_calloc(count, size);
 	if (!result)
-		generali_exit(name, -11);
+		general_free(mini, PROGRAM_FREE, -11);
 	return (result);
 }
 

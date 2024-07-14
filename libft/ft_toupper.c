@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osarikay <osarikay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agungor <agungor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 16:50:56 by osarikay          #+#    #+#             */
-/*   Updated: 2023/10/30 16:04:32 by osarikay         ###   ########.fr       */
+/*   Created: 2023/10/10 09:23:21 by arif              #+#    #+#             */
+/*   Updated: 2023/10/12 17:58:59 by agungor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
-	if (c >= 'a' && c <= 'z')
-	{
+	if (c >= 97 && c <= 122)
 		return (c - 32);
-	}
 	return (c);
 }

@@ -3,62 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osarikay <osarikay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agungor <agungor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 14:23:05 by osarikay          #+#    #+#             */
-/*   Updated: 2023/10/30 20:04:27 by osarikay         ###   ########.fr       */
+/*   Created: 2023/10/14 16:17:50 by agungor           #+#    #+#             */
+/*   Updated: 2023/10/24 12:01:23 by agungor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-static int	calc(int x)
+static size_t	number_length(int c)
 {
-	int	i;
+	size_t	len;
 
-	i = 1;
-	while (x >= 10 || x <= -10)
+	len = 1;
+	if (c <= 0)
 	{
-		x /= 10;
-		i++;
+		len++;
+		c *= -1;
 	}
-	return (i);
-}
-
-static int	num(int x)
-{
-	if (x > 0)
-		return (calc(x));
-	else if (x < 0)
-		return (calc(-x) + 1);
-	else
-		return (1);
+	while (c && ++len)
+		c /= 10;
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*new;
-	size_t	length;
-	int		number;
+	size_t	len;
+	char	*string_num;
+	long	number;
 
 	number = n;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	length = num(number);
-	new = (char *)malloc((sizeof(char) * length) + 1);
-	if (!new)
+	len = number_length(n);
+	string_num = (char *)malloc(len);
+	if (!string_num)
 		return (NULL);
-	new[length] = '\0';
 	if (n < 0)
 	{
+		string_num[0] = '-';
 		number *= -1;
 	}
-	while (length > 0)
+	if (!n)
+		string_num[0] = '0';
+	string_num[--len] = '\0';
+	while (number)
 	{
-		new[--length] = number % 10 + '0';
+		string_num[--len] = number % 10 + 48;
 		number /= 10;
 	}
-	if (n < 0)
-		new[0] = '-';
-	return (new);
+	return (string_num);
 }

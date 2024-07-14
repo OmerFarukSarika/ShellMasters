@@ -3,37 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osarikay < osarikay@student.42.fr>         +#+  +:+       +#+        */
+/*   By: agungor <agungor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 16:44:14 by osarikay          #+#    #+#             */
-/*   Updated: 2024/06/01 20:29:24 by osarikay         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:09:27 by agungor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void env_list(char **env, t_minishell *mini)
+void	env_list(char **env, t_minishell *mini)
 {
-    int i;
-    char **list;
-    t_env *head;
+	int i;
+	char **list;
 
-    i = -1;
-    mini->env_list = s_malloc(mini, 1, sizeof(t_env));
-    head = mini->env_list;
-    while (env[++i] && env)
-    {
-        list = ft_split(env[i], '=');
-        mini->env_list = ft_lstnew_env(list[0], list[1]);
-        mini->env_list->next = s_malloc(mini, 1000, sizeof(mini->env_list));
-        printf("%s=%s\n", mini->env_list->name, mini->env_list->value);
-        mini->env_list = mini->env_list->next;
-        loop_free(list);
-    }
-    mini->env_list = head;
-    while (mini->env_list->next)
-    {
-        printf("%s=%s\n", mini->env_list->name, mini->env_list->value);
-        mini->env_list = mini->env_list->next;
-    }
+	i = -1;
+	while (env && env[++i])
+	{
+		list = ft_split(env[i], '=');
+		if (list)
+		{
+			env_add(mini, list[0], list[1]);
+			free(list);
+			//!null_free((void*)&list);
+			if (!list)
+				write(1, "NULL DOLDU\n", 12);
+		}
+		else
+			general_free(mini, PROGRAM_FREE, -11);
+				
+	}
+	//!exit(0);
 }

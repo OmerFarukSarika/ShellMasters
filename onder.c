@@ -1,7 +1,7 @@
-/* #include <unistd.h>
+ #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-
+/*
 
 int main()
 {
@@ -26,7 +26,7 @@ int main()
  */
 
 
-#include <unistd.h>
+/* #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -58,4 +58,14 @@ int main()
     write(1, test, bytes_read);
 
     return 0;
+}
+ */
+
+
+int main(void)
+{
+    int a = 5;
+    int b = -1;
+    int c = a + b;
+    printf("%d", c);
 }
